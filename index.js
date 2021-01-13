@@ -55,6 +55,79 @@ app.delete('/api/channels/:id',(req,res)=> {
     }
 });
 
+
+app.delete('/api/lessons/:id',(req,res)=> {
+    const {id} = req.params;
+    const deleted = lessons.find(lesson => lesson.id === id);
+    if (deleted){
+        lessons = lessons.filter(lesson => lesson.id != id );
+        res.status(201).json(deleted)
+    }else {
+        res.status(404).json({message:"Lesson you are looking for does not exist!"})
+    }
+});
+
+app.get('/api/channels/:id',(req,res)=> {
+    const {id} = req.params;
+    const found = channels.find(channel => channel.id === id);
+    if (found){
+        res.status(201).json(found);
+    }else {
+        res.status(404).json({message : "Channel does not exist!"});
+    }
+});
+
+app.get('/api/lessons/:id',(req,res)=> {
+    const {id} = req.params;
+    const find = lessons.find(lesson => lesson.id === id);
+    if (find){
+        res.status(201).json(find);
+    }else {
+        res.status(404).json({message:"Lesson does not exist!"});
+    }
+});
+
+app.put('/api/channels/:id',(req,res)=>{
+    const {id} = req.params;
+    const changes = req.body;
+    
+    const index = channels.findIndex(channel => channel.id === id);
+    if(index != -1){
+        //found it
+        channels[index] = changes;
+        res.status(201).json(channels[index]);
+    }else {
+        res.status(404).json({message : "Channel does not exist!"});
+    }
+});
+
+app.patch('/api/channels/:id',(req,res)=>{
+    const {id} = req.params;
+    const changes = req.body;
+    
+    const find = channels.find(channel => channel.id === id);
+    if(find){
+        Object.assign(find,changes);
+        res.status(201).json(find);
+    }else {
+        res.status(404).json({message : "Channel does not exist!"});
+    }
+});
+
+
+app.patch("/api/lessons/:id",(req,res)=> {
+    const {id} = req.params;
+    const changes = req.body;
+
+    const find = lessons.find(lesson => lesson.id === id);
+    if(find){
+        Object.assign(find,changes);
+        res.status(201).json(find);
+    }else {
+        res.status(404).json({message : "Channel does not exist!"});
+    }
+});
+
 app.listen(PORT,() => {
     console.log(`Server running on http://localhost:${PORT}`);
 });
