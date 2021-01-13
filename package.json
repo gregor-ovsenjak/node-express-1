@@ -1,0 +1,26 @@
+{
+  "name": "node-express-1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "server": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gregor-ovsenjak/node-express-1.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gregor-ovsenjak/node-express-1/issues"
+  },
+  "homepage": "https://github.com/gregor-ovsenjak/node-express-1#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.7",
+    "shortid": "^2.2.16"
+  }
+}
