@@ -13,6 +13,7 @@ exports.up = function(knex) {
     // foreing key info to 'lessons' table
     tbl.integer('lesson_id')
     .unsigned()
+    .notNullable()
     .references('id')
     .inTable('lessons')
     .onDelete('CASCADE')

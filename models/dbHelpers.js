@@ -10,7 +10,10 @@ module.exports = {
     find,
     findById,
     remove,
-    update
+    update,
+    addMessage,
+    findLessonMessages,
+    removeMessage
 };
 
 
@@ -39,4 +42,41 @@ function update(id,changes) {
     where({id})
     .update(changes,[id])
     .then(()=> {return findById(id)})
+}
+
+
+function findMessageById(id){
+    return db('messages')
+    .where({id})
+    .first();
+}
+
+
+async function addMessage(message,lesson_id){
+    const [id] = await db('messages')
+    .insert(message)
+    .where({lesson_id})
+    .insert(message);
+
+    return findMessageById(id);
+};
+
+
+async function findLessonMessages(lesson_id){
+    return await db('lessons')
+    .join('messages','lessons.id','messages.lesson_id')
+    .select(
+        'lessons.id as LessonsID',
+        'lessons.name as LessonName',
+        'messages.id as MessageID',
+        'messages.sender',
+        'messages.text'
+    ).where({lesson_id});
+}
+
+
+async function removeMessage(id){
+    return await db('messages')
+    .where({id})
+    .del();
 }
