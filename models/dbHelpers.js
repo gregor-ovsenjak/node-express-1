@@ -1,7 +1,5 @@
 // where we write our queries
-const knex = require('knex');
-const config = require('../knexfile.js');
-const db = knex(config.development);
+const db = require("../dbConfig.js");
 
 
 //add, find, findById, update, ...
