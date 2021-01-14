@@ -20,7 +20,9 @@
   "homepage": "https://github.com/gregor-ovsenjak/node-express-1#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "knex": "^0.21.15",
     "nodemon": "^2.0.7",
-    "shortid": "^2.2.16"
+    "shortid": "^2.2.16",
+    "sqlite3": "^5.0.1"
   }
 }
